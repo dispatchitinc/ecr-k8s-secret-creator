@@ -33,13 +33,13 @@ func main() {
 	}
 
 	log.Info().
-		Str("region", cfg.Region).
+		Str("region", cfg.AwsRegion).
 		Int("interval", cfg.Interval).
 		Str("secretName", cfg.SecretName).
 		Str("secretType", cfg.SecretType).
 		Msg("loaded flags")
 
-	sess := session.Must(session.NewSession(&aws.Config{Region: &cfg.Region}))
+	sess := session.Must(session.NewSession(&aws.Config{Region: &cfg.AwsRegion}))
 	svc := ecr.New(sess)
 
 	for {

@@ -9,7 +9,7 @@ import (
 
 type Config struct {
 	Interval       int    `env:"INTERVAL" envDefault:"1200"`
-	Region         string `env:"REGION" envDefault:"us-east-2"`
+	AwsRegion      string `env:"AWS_REGION" envDefault:"us-east-2"`
 	SecretName     string `env:"SECRET_NAME" envDefault:"ecr-docker-secret"`
 	SecretType     string `env:"SECRET_TYPE" envDefault:"Opaque"`
 	SecretTypeName v1.SecretType
