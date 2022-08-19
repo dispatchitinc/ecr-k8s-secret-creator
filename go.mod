@@ -1,10 +1,12 @@
-module github.com/bzon/ecr-k8s-secret-creator
+module github.com/panbanda/ecr-k8s-secret-creator
 
 go 1.19
 
 require (
 	github.com/aws/aws-sdk-go v1.44.80
+	github.com/caarlos0/env v3.5.0+incompatible
 	github.com/rs/zerolog v1.27.0
+	github.com/stretchr/testify v1.8.0
 	k8s.io/api v0.24.4
 	k8s.io/apimachinery v0.24.4
 	k8s.io/client-go v0.24.4
@@ -32,6 +34,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
 	golang.org/x/net v0.0.0-20220812174116-3211cb980234 // indirect
 	golang.org/x/oauth2 v0.0.0-20220808172628-8227340efae7 // indirect
 	golang.org/x/sys v0.0.0-20220818161305-2296e01440c6 // indirect
