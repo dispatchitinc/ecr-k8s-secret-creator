@@ -18,10 +18,8 @@ spec:
         - image: {{ .Values.image }}
           imagePullPolicy: IfNotPresent
           name: {{ .Values.name }}
-          args:
-            {{- range $key, $value := .Values.flags }}
-            - "-{{ $key }}={{ $value }}"
-            {{- end }}
+          env:
+            {{- .Values.options | toYaml | nindent 10 }}
           resources:
             requests:
               cpu: 5m
