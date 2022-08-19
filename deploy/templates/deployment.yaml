@@ -19,7 +19,10 @@ spec:
           imagePullPolicy: IfNotPresent
           name: {{ .Values.name }}
           env:
-            {{- .Values.options | toYaml | nindent 10 }}
+            {{- range $key, $value := .Values.config }}
+            - name: {{ $key | quote }}
+              value: {{ $value | quote }}
+            {{- end }}
           resources:
             requests:
               cpu: 5m

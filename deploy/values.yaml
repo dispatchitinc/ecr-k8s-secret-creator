@@ -7,13 +7,9 @@ image: albanda/ecr-k8s-secret-creator:0.1.0
 # The namespace for RBAC
 namespace: default
 
-# The options found in the configuration as a key/val pair
-#
-# Example:
-#   - name: SECRET_NAME
-#     value: ecr-docker-secret
-#   - name: AWS_SDK_LOAD_CONFIG
-#     value: 1
-options:
-  - name: SECRET_NAME
-    value: ecr-docker-secret
+# Application options / overrides
+config:
+  SECRET_NAME: ecr-docker-secret
+  SECRET_TYPE: Opaque
+  AWS_REGION: us-east-2
+  INTERVAL: 1200
