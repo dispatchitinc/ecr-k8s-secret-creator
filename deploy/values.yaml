@@ -1,0 +1,15 @@
+# Application name
+name: ecr-secret-creator
+
+# Use your own image for production
+image: albanda/ecr-k8s-secret-creator:0.1.0
+
+# The namespace for RBAC
+namespace: default
+
+flags:
+  # Kubernetes secret name to be used in imagePullSecrets
+  secretName: ecr-docker-secret
+
+  # The ECR region in which to authenticate
+  region: us-east-2

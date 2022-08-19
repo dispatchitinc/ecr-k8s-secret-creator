@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      serviceAccount: {{ .Values.name }}
+      containers:
+        - image: {{ .Values.image }}
+          imagePullPolicy: IfNotPresent
+          name: {{ .Values.name }}
+          args:
+            {{- range $key, $value := .Values.flags }}
+            - "-{{ $key }}={{ $value }}"
+            {{- end }}
+          resources:
+            requests:
+              cpu: 5m
+              memory: 16Mi
+            limits:
+              cpu: 20m
+              memory: 32Mi
