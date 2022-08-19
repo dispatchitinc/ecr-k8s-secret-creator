@@ -13,4 +13,4 @@ This application is designed to be a pod that runs in your cluster and refreshes
 
 This application creates a docker config.json (as a Kubernetes secret) that can authenticate docker clients to Amazon ECR. It is using the [ECR GetAuthorizationToken API](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_GetAuthorizationToken.html) to fetch the token from an Amazon Region.
 
-NOTE: This is a refactor/modernization of the great work done by [bzon](https://github.com/bzon/ecr-k8s-secret-creator).
+*A special thanks to [bzon](https://github.com/bzon/ecr-k8s-secret-creator) for the initial thoughts.*
