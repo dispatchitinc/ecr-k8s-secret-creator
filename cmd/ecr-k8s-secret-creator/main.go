@@ -76,6 +76,9 @@ func main() {
 
 		// Create the docker config.json in buffer
 		dockerCfg, err := createDockerCfg(token)
+		if err != nil {
+			log.Fatal().Err(err).Msg("could not create a docker config")
+		}
 
 		// Get current namespace
 		namespace, err := ioutil.ReadFile("/var/run/secrets/kubernetes.io/serviceaccount/namespace")
