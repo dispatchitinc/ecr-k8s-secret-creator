@@ -10,6 +10,6 @@ namespace: default
 # Application options / overrides
 config:
   SECRET_NAME: ecr-docker-secret
-  SECRET_TYPE: Opaque
+  SECRET_TYPE: kubernetes.io/dockerconfigjson
   AWS_REGION: us-east-2
   INTERVAL: 1200
