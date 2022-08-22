@@ -1,4 +1,4 @@
-[![Go Report Card](https://goreportcard.com/badge/github.com/panbanda/ecr-k8s-secret-creator)](https://goreportcard.com/report/github.com/panbanda/ecr-k8s-secret-creator)
+[![Go Report Card](https://goreportcard.com/badge/github.com/dispatchitinc/ecr-k8s-secret-creator)](https://goreportcard.com/report/github.com/dispatchitinc/ecr-k8s-secret-creator)
 
 # ECR K8S Secret Creator
 
