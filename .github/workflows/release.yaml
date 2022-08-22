@@ -19,7 +19,6 @@ jobs:
         uses: commitizen-tools/commitizen-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          changelog: false
       - name: Print Version
         run: echo "Bumped to version ${{ steps.cz.outputs.version }}"
       - name: Build & Push Image

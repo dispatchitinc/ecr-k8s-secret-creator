@@ -3,4 +3,3 @@
 name = "cz_conventional_commits"
 version = "0.0.3"
 tag_format = "$version"
-changelog_incremental = false
