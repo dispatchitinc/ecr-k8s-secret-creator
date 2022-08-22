@@ -2,7 +2,7 @@
 name: ecr-secret-creator
 
 # Use your own image for production
-image: albanda/ecr-k8s-secret-creator:0.1.0
+image: ghcr.io/dispatchitinc/ecr-k8s-secret-creator:0.0.2
 
 # The namespace for RBAC
 namespace: default
