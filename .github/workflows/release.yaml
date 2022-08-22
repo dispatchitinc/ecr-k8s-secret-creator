@@ -21,4 +21,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - name: Print Version
         run: echo "Bumped to version ${{ steps.cz.outputs.version }}"
-      - run: ko publish --tags ${{ steps.cz.outputs.version }} --bare ./cmd/ecr-k8s-secret-creator
+      - name: Build & Push Image
+        run: ko publish --tags ${{ steps.cz.outputs.version }} --bare ./cmd/ecr-k8s-secret-creator
