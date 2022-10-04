@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/rs/zerolog/log"
 	v1 "k8s.io/api/core/v1"
@@ -37,15 +38,17 @@ func ApplySecret(client kubernetes.Interface, content []byte, secretName, namesp
 		Type: kind,
 	}
 
-	log.Info().Str("namespace", namespace).Str("name", secretName).Msg("creating secret")
-
 	secretClient := client.CoreV1().Secrets(namespace)
-	result, err := secretClient.Update(context.Background(), secret, metav1.UpdateOptions{})
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	defer cancel()
+
+	result, err := secretClient.Update(ctx, secret, metav1.UpdateOptions{})
 	actionTaken := "updated"
 
 	if err != nil {
 		if strings.Contains(err.Error(), "not found") {
-			result, err = secretClient.Create(context.Background(), secret, metav1.CreateOptions{})
+			result, err = secretClient.Create(ctx, secret, metav1.CreateOptions{})
 			if err != nil {
 				return err
 			}
@@ -57,7 +60,8 @@ func ApplySecret(client kubernetes.Interface, content []byte, secretName, namesp
 	}
 
 	log.Info().
-		Str("secret", result.GetObjectMeta().GetName()).
+		Str("namespace", namespace).
+		Str("name", result.GetObjectMeta().GetName()).
 		Msg(fmt.Sprintf("%s secret", actionTaken))
 
 	return nil
