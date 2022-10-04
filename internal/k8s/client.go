@@ -37,7 +37,7 @@ func ApplySecret(client kubernetes.Interface, content []byte, secretName, namesp
 		Type: kind,
 	}
 
-	log.Info().Msg("creating secret")
+	log.Info().Str("namespace", namespace).Str("name", secretName).Msg("creating secret")
 
 	secretClient := client.CoreV1().Secrets(namespace)
 	result, err := secretClient.Update(context.Background(), secret, metav1.UpdateOptions{})

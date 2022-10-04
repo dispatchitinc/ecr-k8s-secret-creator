@@ -64,10 +64,12 @@ func main() {
 			log.Fatal().Err(err).Msg("could not initialize a new client set")
 		}
 
-		// Create or update the secret with the latest information
-		k8s.ApplySecret(clientSet, dockerCfg, cfg.SecretName, k8s.GetNamespace(), cfg.SecretTypeName)
-		if err != nil {
-			log.Fatal().Err(err).Msg("could not apply the docker secret")
+		for _, ns := range cfg.TargetNamespaces {
+			// Create or update the secret with the latest information
+			k8s.ApplySecret(clientSet, dockerCfg, cfg.SecretName, ns, cfg.SecretTypeName)
+			if err != nil {
+				log.Error().Err(err).Msg("could not apply the docker secret")
+			}
 		}
 
 		// Sleep until the next refresh cycle
