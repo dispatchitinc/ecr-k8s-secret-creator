@@ -7,8 +7,19 @@ namespace: default
 # Use your own image for production
 image: ghcr.io/dispatchitinc/ecr-k8s-secret-creator:0.1.1
 
-env:
-  SECRET_NAME: ecr-docker-secret
-  SECRET_TYPE: kubernetes.io/dockerconfigjson
-  AWS_REGION: us-east-2
-  INTERVAL: 1200
+secret:
+  # This is the name of the secret applications
+  # will reference to access the token
+  name: ecr-docker-secret
+
+  # No real need to change this from the default unless you
+  # know what you're doing.
+  type: kubernetes.io/dockerconfigjson
+
+aws:
+  # Region the API calls to get the ECR token
+  region: us-east-2
+
+# Seconds to refresh the secrets (this must be less than 12 hours as
+# required by ECR session expiration). Defaults to 20 minutes.
+refresh_interval: 1200

@@ -19,10 +19,14 @@ spec:
           imagePullPolicy: IfNotPresent
           name: {{ .Values.name }}
           env:
-            {{- range $key, $value := .Values.env }}
-            - name: {{ $key | quote }}
-              value: {{ $value | quote }}
-            {{- end }}
+            - name: SECRET_NAME
+              value: {{ .Values.secret.name | quote }}
+            - name: SECRET_TYPE
+              value: {{ .Values.secret.type | quote }}
+            - name: AWS_REGION
+              value: {{ .Values.aws.region | quote }}
+            - name: INTERVAL
+              value: {{ .Values.refresh_interval | quote }}
           resources:
             requests:
               cpu: 5m
