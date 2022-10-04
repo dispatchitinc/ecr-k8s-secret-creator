@@ -34,7 +34,7 @@ func main() {
 		Str("secretName", cfg.SecretName).
 		Strs("targetNamespaces", cfg.TargetNamespaces).
 		Str("secretType", cfg.SecretType).
-		Msg("loaded flags")
+		Msg("config loaded")
 
 	sess := session.Must(session.NewSession(&aws.Config{Region: &cfg.AwsRegion}))
 	svc := ecr.New(sess)
