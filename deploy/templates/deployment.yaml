@@ -19,7 +19,7 @@ spec:
           imagePullPolicy: IfNotPresent
           name: {{ .Values.name }}
           env:
-            {{- range $key, $value := .Values.config }}
+            {{- range $key, $value := .Values.env }}
             - name: {{ $key | quote }}
               value: {{ $value | quote }}
             {{- end }}

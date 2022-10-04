@@ -17,14 +17,10 @@ import (
 	"k8s.io/client-go/rest"
 )
 
-const appVersion = "0.1.0"
-
 func main() {
-	if os.Getenv("APP_ENV") != "production" {
-		log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
-	}
+	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 
-	log.Info().Str("version", appVersion).Msg("initializing")
+	log.Info().Msg("initializing")
 
 	// Load application configuration
 	cfg, err := config.LoadConfig()
