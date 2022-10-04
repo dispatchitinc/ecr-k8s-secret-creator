@@ -32,6 +32,7 @@ func main() {
 		Str("region", cfg.AwsRegion).
 		Int("interval", cfg.Interval).
 		Str("secretName", cfg.SecretName).
+		Strs("targetNamespaces", cfg.TargetNamespaces).
 		Str("secretType", cfg.SecretType).
 		Msg("loaded flags")
 

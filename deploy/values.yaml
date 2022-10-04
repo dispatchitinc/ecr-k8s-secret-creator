@@ -24,6 +24,9 @@ aws:
 # required by ECR session expiration). Defaults to 20 minutes.
 refresh_interval: 1200
 
+# A list of namespaces to insert this secret
+target_namespaces: [default]
+
 # In case you need to provide any library specific AWS environment
 # credentials
-env: []
+env: {}
