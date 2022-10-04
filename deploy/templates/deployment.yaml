@@ -27,6 +27,10 @@ spec:
               value: {{ .Values.aws.region | quote }}
             - name: INTERVAL
               value: {{ .Values.refresh_interval | quote }}
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $key | quote }}
+              value: {{ $value | quote }}
+            {{- end }}
           resources:
             requests:
               cpu: 5m

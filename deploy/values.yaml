@@ -23,3 +23,7 @@ aws:
 # Seconds to refresh the secrets (this must be less than 12 hours as
 # required by ECR session expiration). Defaults to 20 minutes.
 refresh_interval: 1200
+
+# In case you need to provide any library specific AWS environment
+# credentials
+env: []
