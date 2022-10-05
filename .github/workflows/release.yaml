@@ -44,6 +44,12 @@ jobs:
           regex: 'ecr-k8s-secret-creator:([0-9\.]*)'
           replacement: ecr-k8s-secret-creator:${{ needs.bump_version.outputs.version }}
           include: deploy/values.yaml
+      - name: Update Helm Chart Versions
+        uses: mingjun97/file-regex-replace@v1
+        with:
+          regex: ': ([0-9\.]*)'
+          replacement: ': ${{ needs.bump_version.outputs.version }}'
+          include: deploy/Chart.yaml
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
