@@ -1,6 +1,7 @@
 package main
 
 import (
+	"net/http"
 	"os"
 	"time"
 
@@ -12,7 +13,6 @@ import (
 	"github.com/dispatchitinc/ecr-k8s-secret-creator/internal/k8s"
 	"github.com/rs/zerolog"
 	log "github.com/rs/zerolog/log"
-
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 )
@@ -43,6 +43,8 @@ func main() {
 	refresh := make(chan bool)
 	go func() { refresh <- true }()
 
+	initServer(refresh)
+
 	// The timer that refreshes the secrets before it expires
 	ticker := time.NewTicker(time.Duration(cfg.Interval) * time.Second)
 	defer ticker.Stop()
@@ -56,6 +58,28 @@ func main() {
 			refreshSecrets(svc, &cfg)
 		}
 	}
+}
+
+// initServer initializes the health checks and http endpoints for
+// refreshing the secrets manually
+func initServer(refresh chan<- bool) {
+	http.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
+		_, _ = w.Write([]byte("ok"))
+	})
+
+	http.HandleFunc("/refresh", func(w http.ResponseWriter, r *http.Request) {
+		refresh <- true
+		_, _ = w.Write([]byte("ok"))
+	})
+
+	go func() {
+		log.Info().Msg("initializing http client at :8080")
+
+		err := http.ListenAndServe(":8080", nil)
+		if err != nil {
+			log.Fatal().Err(err).Msg("error with http client")
+		}
+	}()
 }
 
 func refreshSecrets(svc *ecr.ECR, cfg *config.Config) {
