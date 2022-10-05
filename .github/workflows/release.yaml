@@ -45,8 +45,6 @@ jobs:
           token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Release Helm Chart
         uses: helm/chart-releaser-action@v1.4.1
-        with:
-          charts_dir: deploy
         env:
           CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
