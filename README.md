@@ -15,4 +15,9 @@ This application refreshes the ECR tokens that expire every 12 hours.  EKS has t
 
 This application creates a docker config.json (as a Kubernetes secret) that can authenticate docker clients to Amazon ECR. It is using the [ECR GetAuthorizationToken API](https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_GetAuthorizationToken.html) to fetch the token from a specific AWS region.
 
-*A special thanks to [bzon](https://github.com/bzon/ecr-k8s-secret-creator) for the initial thoughts.*
+# Installation
+
+```
+helm repo add ecr-k8s-secret-creator https://dispatchitinc.github.io/ecr-k8s-secret-creator/
+helm install ecr-k8s-secret-creator ecr-k8s-secret-creator/ecr-k8s-secret-creator
+```
