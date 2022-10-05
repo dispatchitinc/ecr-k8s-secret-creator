@@ -1,3 +1,10 @@
+## 0.2.6 (2022-10-05)
+
+### Fix
+
+- updated location
+- added charts directory
+
 ## 0.2.5 (2022-10-05)
 
 ### Fix
