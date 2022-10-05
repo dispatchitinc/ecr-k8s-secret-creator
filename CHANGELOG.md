@@ -1,3 +1,9 @@
+## 0.2.0 (2022-10-05)
+
+### Feat
+
+- added http endpoint for refreshing and healthz
+
 ## 0.1.26 (2022-10-05)
 
 ### Fix
