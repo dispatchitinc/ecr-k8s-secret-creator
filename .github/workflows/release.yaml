@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-go@v2
         with:
           go-version: 1.19
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
       - uses: imjasonh/setup-ko@v0.6
@@ -24,14 +24,16 @@ jobs:
           changelog: false
       - name: Print Version
         run: echo "Bumped to version ${{ steps.cz.outputs.version }}"
-      - name: Build & Push Image
-        run: ko publish --tags ${{ steps.cz.outputs.version }} --bare ./cmd/ecr-k8s-secret-creator
+      # - name: Build & Push Image
+      #   run: ko publish --tags ${{ steps.cz.outputs.version }} --bare ./cmd/ecr-k8s-secret-creator
       - name: Update Image Version Tag
         uses: mingjun97/file-regex-replace@v1
         with:
           regex: 'ecr-k8s-secret-creator:([0-9\.]*)'
           replacement: ecr-k8s-secret-creator:${{ steps.cz.outputs.version }}
           include: deploy/values.yaml
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
         with:
-          branch: ${{ github.head_ref }}
+          message: Updated image tag version to ${{ steps.cz.outputs.version }}
+
