@@ -32,6 +32,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          token: "${{ secrets.GITHUB_TOKEN }}"
       # - uses: imjasonh/setup-ko@v0.6
       # - name: Build & Push Image
       #   run: ko publish --tags ${{ needs.bump_version.outputs.version }} --bare ./cmd/ecr-k8s-secret-creator
