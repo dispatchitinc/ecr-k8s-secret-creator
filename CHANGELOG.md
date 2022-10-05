@@ -1,3 +1,10 @@
+## 0.2.4 (2022-10-05)
+
+### Fix
+
+- using different regex
+- testing update
+
 ## 0.2.3 (2022-10-05)
 
 ### Fix
