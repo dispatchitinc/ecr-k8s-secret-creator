@@ -1,3 +1,11 @@
+## 0.2.7 (2022-10-05)
+
+### Fix
+
+- updating version
+- updating version
+- using version
+
 ## 0.2.6 (2022-10-05)
 
 ### Fix
