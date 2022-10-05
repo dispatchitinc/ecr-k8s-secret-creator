@@ -7,9 +7,9 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ecr"
-	"github.com/panbanda/ecr-k8s-secret-creator/internal/config"
-	"github.com/panbanda/ecr-k8s-secret-creator/internal/docker"
-	"github.com/panbanda/ecr-k8s-secret-creator/internal/k8s"
+	"github.com/dispatchitinc/ecr-k8s-secret-creator/internal/config"
+	"github.com/dispatchitinc/ecr-k8s-secret-creator/internal/docker"
+	"github.com/dispatchitinc/ecr-k8s-secret-creator/internal/k8s"
 	"github.com/rs/zerolog"
 	log "github.com/rs/zerolog/log"
 

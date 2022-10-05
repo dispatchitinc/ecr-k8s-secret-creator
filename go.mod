@@ -1,4 +1,4 @@
-module github.com/panbanda/ecr-k8s-secret-creator
+module github.com/dispatchitinc/ecr-k8s-secret-creator
 
 go 1.19
 
