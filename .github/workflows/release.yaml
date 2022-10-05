@@ -30,3 +30,6 @@ jobs:
           regex: 'ecr-k8s-secret-creator:([0-9\.]*)'
           replacement: ecr-k8s-secret-creator:${{ steps.cz.outputs.version }}
           include: deploy/values.yaml
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Updated image tag version to ${{ steps.cz.outputs.version }} [skip ci]
