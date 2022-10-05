@@ -39,40 +39,59 @@ func main() {
 	sess := session.Must(session.NewSession(&aws.Config{Region: &cfg.AwsRegion}))
 	svc := ecr.New(sess)
 
+	// The channel that detects secret update requests
+	refresh := make(chan bool)
+	go func() { refresh <- true }()
+
+	// The timer that refreshes the secrets before it expires
+	ticker := time.NewTicker(time.Duration(cfg.Interval) * time.Second)
+	defer ticker.Stop()
+
 	for {
-		// Get the ECR authorization token from AWS
-		tokenInput := &ecr.GetAuthorizationTokenInput{}
+		select {
+		case <-ticker.C:
+			log.Info().Msg("tick")
+			go func() { refresh <- true }()
+		case <-refresh:
+			log.Info().Msg("refreshing secrets")
 
-		token, err := svc.GetAuthorizationToken(tokenInput)
+			refreshSecrets(svc, &cfg)
+
+			log.Info().Msg("finished refreshing")
+		}
+	}
+}
+
+func refreshSecrets(svc *ecr.ECR, cfg *config.Config) {
+	// Get the ECR authorization token from AWS
+	tokenInput := &ecr.GetAuthorizationTokenInput{}
+
+	token, err := svc.GetAuthorizationToken(tokenInput)
+	if err != nil {
+		log.Error().Err(err).Msg("could not get authorization token")
+	}
+
+	// Create the docker config.json in buffer
+	dockerCfg, err := docker.RenderDockerConfig(token)
+	if err != nil {
+		log.Error().Err(err).Msg("could not create a docker config")
+	}
+
+	// Create the docker config.json as a kubernetes secret
+	kconfig, err := rest.InClusterConfig()
+	if err != nil {
+		log.Error().Err(err).Msg("could not load docker config.json")
+	}
+	clientSet, err := kubernetes.NewForConfig(kconfig)
+	if err != nil {
+		log.Error().Err(err).Msg("could not initialize a new client set")
+	}
+
+	for _, ns := range cfg.TargetNamespaces {
+		// Create or update the secret with the latest information
+		k8s.ApplySecret(clientSet, dockerCfg, cfg.SecretName, ns, cfg.SecretTypeName)
 		if err != nil {
-			log.Fatal().Err(err).Msg("could not get authorization token")
+			log.Error().Err(err).Msg("could not apply the docker secret")
 		}
-
-		// Create the docker config.json in buffer
-		dockerCfg, err := docker.RenderDockerConfig(token)
-		if err != nil {
-			log.Fatal().Err(err).Msg("could not create a docker config")
-		}
-
-		// Create the docker config.json as a kubernetes secret
-		kconfig, err := rest.InClusterConfig()
-		if err != nil {
-			log.Fatal().Err(err).Msg("could not load docker config.json")
-		}
-		clientSet, err := kubernetes.NewForConfig(kconfig)
-		if err != nil {
-			log.Fatal().Err(err).Msg("could not initialize a new client set")
-		}
-
-		for _, ns := range cfg.TargetNamespaces {
-			// Create or update the secret with the latest information
-			k8s.ApplySecret(clientSet, dockerCfg, cfg.SecretName, ns, cfg.SecretTypeName)
-			if err != nil {
-				log.Error().Err(err).Msg("could not apply the docker secret")
-			}
-		}
-
-		// Sleep until the next refresh cycle
-		time.Sleep(time.Duration(cfg.Interval) * time.Second)
 	}
 }
