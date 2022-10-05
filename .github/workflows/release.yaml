@@ -24,12 +24,12 @@ jobs:
       #   run: ko publish --tags ${{ steps.cz.outputs.version }} --bare ./cmd/ecr-k8s-secret-creator
       - run: |
           date > generated.txt
-      - name: Update Image Version Tag
-        uses: mingjun97/file-regex-replace@v1
-        with:
-          regex: 'ecr-k8s-secret-creator:([0-9\.]*)'
-          replacement: ecr-k8s-secret-creator:${{ steps.cz.outputs.version }}
-          include: deploy/values.yaml
+      # - name: Update Image Version Tag
+      #   uses: mingjun97/file-regex-replace@v1
+      #   with:
+      #     regex: 'ecr-k8s-secret-creator:([0-9\.]*)'
+      #     replacement: ecr-k8s-secret-creator:${{ steps.cz.outputs.version }}
+      #     include: deploy/values.yaml
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
