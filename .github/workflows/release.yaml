@@ -24,3 +24,9 @@ jobs:
         run: echo "Bumped to version ${{ steps.cz.outputs.version }}"
       - name: Build & Push Image
         run: ko publish --tags ${{ steps.cz.outputs.version }} --bare ./cmd/ecr-k8s-secret-creator
+      - name: Update Image Version Tag
+        uses: mingjun97/file-regex-replace
+        with:
+          regex: 'ecr-k8s-secret-creator:([0-9\.]*)'
+          replacement: ecr-k8s-secret-creator:${{ steps.cz.outputs.version }}
+          include: deploy/values.yaml
