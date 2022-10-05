@@ -35,9 +35,9 @@ jobs:
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
       - run: git pull
-      # - uses: imjasonh/setup-ko@v0.6
-      # - name: Build & Push Image
-      #   run: ko publish --tags ${{ needs.bump_version.outputs.version }} --bare ./cmd/ecr-k8s-secret-creator
+      - uses: imjasonh/setup-ko@v0.6
+      - name: Build & Push Image
+        run: ko publish --tags ${{ needs.bump_version.outputs.version }} --bare ./cmd/ecr-k8s-secret-creator
       - name: Update Image Version Tag
         uses: mingjun97/file-regex-replace@v1
         with:
