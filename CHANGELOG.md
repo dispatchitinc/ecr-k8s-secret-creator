@@ -1,3 +1,10 @@
+## 0.2.1 (2022-10-05)
+
+### Fix
+
+- removed http server
+- updated readiness probe
+
 ## 0.2.0 (2022-10-05)
 
 ### Feat
