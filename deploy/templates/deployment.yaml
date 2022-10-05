@@ -18,10 +18,6 @@ spec:
         - image: {{ .Values.image }}
           imagePullPolicy: IfNotPresent
           name: {{ .Values.name }}
-          livenessProbe:
-            httpGet:
-              path: /healthz
-              port: 8080
           readinessProbe:
             httpGet:
               path: /healthz
