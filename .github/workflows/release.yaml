@@ -24,7 +24,6 @@ jobs:
           changelog: true
 
   publish_helm_chart:
-    if: '${{ needs.bump_version.outputs.version != ""}}'
     needs: bump_version
     name: Publish Helm Chart
     runs-on: ubuntu-latest
@@ -51,7 +50,6 @@ jobs:
           CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   publish_container:
-    if: '${{ needs.bump_version.outputs.version != "" }}'
     needs: bump_version
     name: Publish Container
     runs-on: ubuntu-latest
