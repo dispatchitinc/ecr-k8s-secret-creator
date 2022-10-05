@@ -23,8 +23,36 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           changelog: true
 
-  publish:
+  publish_helm_chart:
     needs: bump_version
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: "${{ secrets.GITHUB_TOKEN }}"
+      - run: git pull
+      - name: Update Helm Chart Versions
+        uses: mingjun97/file-regex-replace@v1
+        with:
+          regex: ': ([0-9\.]+)'
+          replacement: ': ${{ needs.bump_version.outputs.version }}'
+          include: deploy/Chart.yaml
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          default_author: github_actions
+          message: Updated image tag version to ${{ needs.bump_version.outputs.version }}
+      - name: Release Helm Chart
+        uses: helm/chart-releaser-action@v1.4.1
+        with:
+          charts_dir: deploy
+        env:
+          CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish_container:
+    needs: publish_helm_chart
     name: Publish
     runs-on: ubuntu-latest
     steps:
@@ -44,20 +72,9 @@ jobs:
           regex: 'ecr-k8s-secret-creator:([0-9\.]+)'
           replacement: ecr-k8s-secret-creator:${{ needs.bump_version.outputs.version }}
           include: deploy/values.yaml
-      - name: Update Helm Chart Versions
-        uses: mingjun97/file-regex-replace@v1
-        with:
-          regex: ': ([0-9\.]+)'
-          replacement: ': ${{ needs.bump_version.outputs.version }}'
-          include: deploy/Chart.yaml
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:
           default_author: github_actions
           message: Updated image tag version to ${{ needs.bump_version.outputs.version }}
-      - name: Release Helm Chart
-        uses: helm/chart-releaser-action@v1.4.1
-        with:
-          charts_dir: deploy
-        env:
-          CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
