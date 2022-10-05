@@ -1,3 +1,9 @@
+## 0.2.2 (2022-10-05)
+
+### Fix
+
+- updating the chart version
+
 ## 0.2.1 (2022-10-05)
 
 ### Fix
