@@ -33,6 +33,9 @@ func ApplySecret(client kubernetes.Interface, content []byte, secretName, namesp
 	secret := &v1.Secret{
 		ObjectMeta: metav1.ObjectMeta{
 			Name: secretName,
+			Labels: map[string]string{
+				"k8s.dispatchit.com/ecr-k8s-secret-creator": "1",
+			},
 		},
 		Data: data,
 		Type: kind,

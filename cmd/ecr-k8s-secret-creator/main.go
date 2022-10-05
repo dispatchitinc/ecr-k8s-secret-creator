@@ -53,16 +53,14 @@ func main() {
 			log.Info().Msg("tick")
 			go func() { refresh <- true }()
 		case <-refresh:
-			log.Info().Msg("refreshing secrets")
-
 			refreshSecrets(svc, &cfg)
-
-			log.Info().Msg("finished refreshing")
 		}
 	}
 }
 
 func refreshSecrets(svc *ecr.ECR, cfg *config.Config) {
+	log.Info().Msg("refreshing secrets")
+
 	// Get the ECR authorization token from AWS
 	tokenInput := &ecr.GetAuthorizationTokenInput{}
 
@@ -94,4 +92,6 @@ func refreshSecrets(svc *ecr.ECR, cfg *config.Config) {
 			log.Error().Err(err).Msg("could not apply the docker secret")
 		}
 	}
+
+	log.Info().Msg("finished refreshing")
 }
