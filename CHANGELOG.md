@@ -1,3 +1,9 @@
+## 0.1.26 (2022-10-05)
+
+### Fix
+
+- added labels to deployment
+
 ## 0.1.25 (2022-10-05)
 
 ### Fix
