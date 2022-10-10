@@ -1,3 +1,11 @@
+## 0.2.10 (2022-10-10)
+
+### Fix
+
+- adding additional registries
+
+## ecr-k8s-secret-creator-0.2.9 (2022-10-05)
+
 ## 0.2.9 (2022-10-05)
 
 ### Fix
