@@ -1,4 +1,6 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/dispatchitinc/ecr-k8s-secret-creator)](https://goreportcard.com/report/github.com/dispatchitinc/ecr-k8s-secret-creator)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/4613f935eff94c6f860bd8409554331f)](https://www.codacy.com/gh/dispatchitinc/ecr-k8s-secret-creator/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dispatchitinc/ecr-k8s-secret-creator&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/4613f935eff94c6f860bd8409554331f)](https://www.codacy.com/gh/dispatchitinc/ecr-k8s-secret-creator/dashboard?utm_source=github.com&utm_medium=referral&utm_content=dispatchitinc/ecr-k8s-secret-creator&utm_campaign=Badge_Coverage)
 
 # ECR K8S Secret Creator
 
