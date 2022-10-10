@@ -7,7 +7,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    name: codacy-coverage-reporter
+    name: Test
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-go@v2
@@ -16,7 +16,8 @@ jobs:
       - name: Test
         run: |
           go test -v ./... -coverprofile=coverage.out
-          bash <(curl -Ls https://coverage.codacy.com/get.sh)
+          bash <(curl -Ls https://coverage.codacy.com/get.sh) report \
+            --force-coverage-parser go -r coverage.out
 
   bump_version:
     if: "!startsWith(github.event.head_commit.message, 'bump:')"
