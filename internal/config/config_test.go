@@ -19,10 +19,31 @@ func TestLoadingTargetNamespaces(t *testing.T) {
 	}
 
 	for _, testCase := range testCases {
-		os.Setenv("TARGET_NAMESPACES", testCase.env)
-		cfg, err := LoadConfig()
-		assert.NoError(t, err)
-		assert.ElementsMatch(t, testCase.result, cfg.TargetNamespaces)
+		t.Run(testCase.env, func(t *testing.T) {
+			os.Setenv("TARGET_NAMESPACES", testCase.env)
+			cfg, err := LoadConfig()
+			assert.NoError(t, err)
+			assert.ElementsMatch(t, testCase.result, cfg.TargetNamespaces)
+		})
+	}
+}
+
+func TestLoadingTargetRegistries(t *testing.T) {
+	var testCases = []struct {
+		env    string
+		result []string
+	}{
+		{"", []string{}},
+		{"00000000.dkr.ecr.us-east-2.amazonaws.com", []string{"00000000.dkr.ecr.us-east-2.amazonaws.com"}},
+	}
+
+	for _, testCase := range testCases {
+		t.Run(testCase.env, func(t *testing.T) {
+			os.Setenv("TARGET_REGISTRIES", testCase.env)
+			cfg, err := LoadConfig()
+			assert.NoError(t, err)
+			assert.ElementsMatch(t, testCase.result, cfg.TargetRegistries)
+		})
 	}
 }
 
@@ -37,12 +58,14 @@ func TestParseSecretType(t *testing.T) {
 	}
 
 	for _, testCase := range testCases {
-		output, err := parseSecretType(testCase.input)
-		assert.NoError(t, err)
+		t.Run(testCase.input, func(t *testing.T) {
+			output, err := parseSecretType(testCase.input)
+			assert.NoError(t, err)
 
-		if output != testCase.output {
-			t.Errorf("Expected input %s to return output secret type %s", testCase.input, testCase.output)
-		}
+			if output != testCase.output {
+				t.Errorf("Expected input %s to return output secret type %s", testCase.input, testCase.output)
+			}
+		})
 	}
 
 	_, err := parseSecretType("")

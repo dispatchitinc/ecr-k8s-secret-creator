@@ -29,6 +29,8 @@ spec:
               value: {{ .Values.refresh_interval | quote }}
             - name: TARGET_NAMESPACES
               value: {{ .Values.target_namespaces | join "," | quote }}
+            - name: TARGET_REGISTRIES
+              value: {{ .Values.target_registries | join "," | quote }}
             {{- range $key, $value := .Values.env }}
             - name: {{ $key | quote }}
               value: {{ $value | quote }}

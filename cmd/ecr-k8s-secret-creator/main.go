@@ -65,7 +65,7 @@ func refreshSecrets(svc *ecr.ECR, cfg *config.Config) {
 	}
 
 	// Create the docker config.json in buffer
-	dockerCfg, err := docker.RenderDockerConfig(token)
+	dockerCfg, err := docker.RenderDockerConfig(token, cfg.TargetRegistries)
 	if err != nil {
 		log.Error().Err(err).Msg("could not create a docker config")
 	}

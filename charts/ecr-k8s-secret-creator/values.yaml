@@ -27,6 +27,11 @@ refresh_interval: 1200
 # A list of namespaces to insert this secret
 target_namespaces: [default]
 
+# List the registries that need to be validated (if you're using a different
+# account for hosting your ECR repositories for example).
+# Defaults to the current account/region.
+target_registries: []
+
 # In case you need to provide any library specific AWS environment
 # credentials
 env: {}

@@ -12,6 +12,7 @@ type Config struct {
 	AwsRegion        string   `env:"AWS_REGION" envDefault:"us-east-2"`
 	SecretName       string   `env:"SECRET_NAME" envDefault:"ecr-docker-secret"`
 	TargetNamespaces []string `env:"TARGET_NAMESPACES" envDefault:"default"`
+	TargetRegistries []string `env:"TARGET_REGISTRIES"`
 	SecretType       string   `env:"SECRET_TYPE" envDefault:"Opaque"`
 	SecretTypeName   v1.SecretType
 }
