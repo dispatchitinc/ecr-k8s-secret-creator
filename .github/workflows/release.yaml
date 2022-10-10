@@ -18,6 +18,8 @@ jobs:
           go test -v ./... -coverprofile=coverage.out
           bash <(curl -Ls https://coverage.codacy.com/get.sh) report \
             --force-coverage-parser go -r coverage.out
+        env:
+          CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
 
   bump_version:
     if: "!startsWith(github.event.head_commit.message, 'bump:')"
