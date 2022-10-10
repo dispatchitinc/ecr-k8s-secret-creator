@@ -1,7 +1,6 @@
 package main
 
 import (
-	"os"
 	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -10,15 +9,12 @@ import (
 	"github.com/dispatchitinc/ecr-k8s-secret-creator/internal/config"
 	"github.com/dispatchitinc/ecr-k8s-secret-creator/internal/docker"
 	"github.com/dispatchitinc/ecr-k8s-secret-creator/internal/k8s"
-	"github.com/rs/zerolog"
 	log "github.com/rs/zerolog/log"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 )
 
 func main() {
-	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
-
 	log.Info().Msg("initializing")
 
 	// Load application configuration
