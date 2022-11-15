@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   ecr-k8s-secret-creator:
   - apiVersion: v2
+    appVersion: 0.2.12
+    created: "2022-11-15T12:24:55.62285477Z"
+    description: Deploying an ECR refresher application to a kubernetes namespace
+    digest: 1f005c84b796588c080c82e979dedb1265181096596208732be4f509c9837a6d
+    name: ecr-k8s-secret-creator
+    type: application
+    urls:
+    - https://github.com/dispatchitinc/ecr-k8s-secret-creator/releases/download/ecr-k8s-secret-creator-0.2.12/ecr-k8s-secret-creator-0.2.12.tgz
+    version: 0.2.12
+  - apiVersion: v2
     appVersion: 0.2.11
     created: "2022-10-10T22:24:32.179070842Z"
     description: Deploying an ECR refresher application to a kubernetes namespace
@@ -41,4 +51,4 @@ entries:
     urls:
     - https://github.com/dispatchitinc/ecr-k8s-secret-creator/releases/download/ecr-k8s-secret-creator-0.2.8/ecr-k8s-secret-creator-0.2.8.tgz
     version: 0.2.8
-generated: "2022-10-10T22:24:32.179092642Z"
+generated: "2022-11-15T12:24:55.62286957Z"
