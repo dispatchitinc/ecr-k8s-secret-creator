@@ -1,3 +1,12 @@
+## 0.2.12 (2022-11-15)
+
+### Fix
+
+- **deps**: update module github.com/stretchr/testify to v1.8.1 (#3)
+- **deps**: update module github.com/aws/aws-sdk-go to v1.44.137 (#2)
+
+## ecr-k8s-secret-creator-0.2.11 (2022-10-10)
+
 ## 0.2.11 (2022-10-10)
 
 ### Fix
