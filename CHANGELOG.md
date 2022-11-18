@@ -1,3 +1,13 @@
+## 0.2.13 (2022-11-18)
+
+### Fix
+
+- **deps**: update module github.com/aws/aws-sdk-go to v1.44.140 (#9)
+- **deps**: update kubernetes packages to v0.25.4 (#5)
+- **deps**: update module github.com/rs/zerolog to v1.28.0 (#6)
+
+## ecr-k8s-secret-creator-0.2.12 (2022-11-15)
+
 ## 0.2.12 (2022-11-15)
 
 ### Fix
