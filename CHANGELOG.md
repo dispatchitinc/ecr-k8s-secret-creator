@@ -1,3 +1,11 @@
+## 0.2.14 (2022-11-23)
+
+### Fix
+
+- **deps**: update module github.com/aws/aws-sdk-go to v1.44.144 (#10)
+
+## ecr-k8s-secret-creator-0.2.13 (2022-11-18)
+
 ## 0.2.13 (2022-11-18)
 
 ### Fix
