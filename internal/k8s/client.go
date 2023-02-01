@@ -44,7 +44,7 @@ func ApplySecret(client kubernetes.Interface, content []byte, secretName, namesp
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
-	secret, err := secretClient.Update(ctx, secret, metav1.UpdateOptions{})
+	out, err := secretClient.Update(ctx, secret, metav1.UpdateOptions{})
 	if err != nil {
 		switch {
 		case strings.Contains(err.Error(), "not found"):
@@ -54,5 +54,5 @@ func ApplySecret(client kubernetes.Interface, content []byte, secretName, namesp
 		}
 	}
 
-	return secret, nil
+	return out, nil
 }
