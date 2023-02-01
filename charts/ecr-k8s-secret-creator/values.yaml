@@ -5,7 +5,7 @@ name: ecr-secret-creator
 namespace: default
 
 # Use your own image for production
-image: ghcr.io/dispatchitinc/ecr-k8s-secret-creator:0.2.18
+image: ghcr.io/dispatchitinc/ecr-k8s-secret-creator:0.2.19
 
 secret:
   # This is the name of the secret applications
