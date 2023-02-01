@@ -80,7 +80,6 @@ func main() {
 	for {
 		select {
 		case <-ticker.C:
-			log.Info("tick")
 			go func() { refresh <- true }()
 		case <-refresh:
 			// Refresh the token if it is within 3 hours
@@ -157,7 +156,7 @@ func refreshSecrets() error {
 		secret, err := k8s.ApplySecret(klient, dockerCfg, cfg.SecretName, ns, cfg.SecretTypeName)
 		switch {
 		case err != nil:
-			log.Errorw("could not apply the docker secret", "error", err)
+			log.Errorw("could not apply the docker secret", "error", err, "name", cfg.SecretName, "namespace", ns)
 		default:
 			log.Info("created secret", "name", secret.Name, "namespace", secret.Namespace)
 		}
