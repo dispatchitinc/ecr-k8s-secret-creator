@@ -3,8 +3,6 @@ package docker
 import (
 	"encoding/json"
 	"errors"
-
-	"github.com/aws/aws-sdk-go/service/ecr"
 )
 
 type authConfig struct {
@@ -15,13 +13,10 @@ type dockerConfigAuthJson struct {
 	Auths map[string]authConfig `json:"auths"`
 }
 
-func RenderDockerConfig(ecrToken *ecr.GetAuthorizationTokenOutput, registries []string) ([]byte, error) {
-	if len(ecrToken.AuthorizationData) < 1 {
-		return nil, errors.New("Authorization data is empty")
+func RenderDockerConfig(token string, registries []string) ([]byte, error) {
+	if token == "" || len(registries) == 0 {
+		return nil, errors.New("please provide a token and at least one registry")
 	}
-
-	registries = append(registries, *ecrToken.AuthorizationData[0].ProxyEndpoint)
-	token := *ecrToken.AuthorizationData[0].AuthorizationToken
 
 	doc := dockerConfigAuthJson{
 		Auths: make(map[string]authConfig),
@@ -33,7 +28,7 @@ func RenderDockerConfig(ecrToken *ecr.GetAuthorizationTokenOutput, registries []
 
 	rendered, err := json.Marshal(doc)
 	if err != nil {
-		return nil, errors.New("Cannot render docker config auth json")
+		return nil, errors.New("cannot render docker config auth json")
 	}
 
 	return rendered, nil

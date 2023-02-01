@@ -8,7 +8,7 @@ import (
 )
 
 type Config struct {
-	Interval         int      `env:"INTERVAL" envDefault:"1200"`
+	Interval         int      `env:"INTERVAL" envDefault:"10"`
 	AwsRegion        string   `env:"AWS_REGION" envDefault:"us-east-2"`
 	SecretName       string   `env:"SECRET_NAME" envDefault:"ecr-docker-secret"`
 	TargetNamespaces []string `env:"TARGET_NAMESPACES" envDefault:"default"`
@@ -18,8 +18,13 @@ type Config struct {
 }
 
 // LoadConfig reads configuration from file or environment variables.
-func LoadConfig() (config Config, err error) {
-	err = env.Parse(&config)
+func LoadConfig() (*Config, error) {
+	config := &Config{}
+
+	err := env.Parse(config)
+	if err != nil {
+		return nil, err
+	}
 
 	config.SecretTypeName, err = parseSecretType(config.SecretType)
 	if err != nil {
