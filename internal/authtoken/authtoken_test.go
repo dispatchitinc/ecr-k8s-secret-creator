@@ -14,7 +14,7 @@ type mockProvider struct {
 	expires time.Time
 }
 
-func (s mockProvider) GetAuthorizationToken(input *ecr.GetAuthorizationTokenInput) (*ecr.GetAuthorizationTokenOutput, error) {
+func (s mockProvider) GetAuthorizationToken(_ *ecr.GetAuthorizationTokenInput) (*ecr.GetAuthorizationTokenOutput, error) {
 	return &ecr.GetAuthorizationTokenOutput{
 		AuthorizationData: []*ecr.AuthorizationData{
 			{

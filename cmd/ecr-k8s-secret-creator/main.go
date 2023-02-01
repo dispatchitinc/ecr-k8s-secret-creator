@@ -140,7 +140,8 @@ func refreshSecrets() error {
 	}
 
 	// Create the docker config.json in buffer
-	registries := append(cfg.TargetRegistries, token.Endpoint)
+	registries := cfg.TargetRegistries
+	registries = append(registries, token.Endpoint)
 	dockerCfg, err := docker.RenderDockerConfig(token.Token, registries)
 	if err != nil {
 		log.Errorw("could not create a docker config", "registries", registries)
