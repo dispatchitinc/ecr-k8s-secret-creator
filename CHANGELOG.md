@@ -1,3 +1,11 @@
+## 0.2.17 (2023-02-01)
+
+### Fix
+
+- added better logging
+
+## ecr-k8s-secret-creator-0.2.16 (2023-02-01)
+
 ## 0.2.16 (2023-02-01)
 
 ### Fix
