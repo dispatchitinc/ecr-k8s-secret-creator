@@ -122,14 +122,14 @@ func refreshSecrets() error {
 		// namespace because helm chart changed the managed namespaces
 		_, isManaged := managed[secret.Namespace]
 		if !isManaged {
-			log.Info("namespace not managed, deleting secret", "name", secret.Name, "namespace", secret.Namespace)
+			log.Infow("namespace not managed, deleting secret", "name", secret.Name, "namespace", secret.Namespace)
 			deleteSecret(secret)
 			continue
 		}
 
 		// Secrets that were created under an old name configuration
 		if secret.Name != cfg.SecretName {
-			log.Info("mismatched name, deleting secret", "name", secret.Name, "namespace", secret.Namespace)
+			log.Infow("mismatched name, deleting secret", "name", secret.Name, "namespace", secret.Namespace)
 			deleteSecret(secret)
 			continue
 		}
@@ -158,7 +158,7 @@ func refreshSecrets() error {
 		case err != nil:
 			log.Errorw("could not apply the docker secret", "error", err, "name", cfg.SecretName, "namespace", ns)
 		default:
-			log.Info("created secret", "name", secret.Name, "namespace", secret.Namespace)
+			log.Infow("created secret", "name", secret.Name, "namespace", secret.Namespace)
 		}
 	}
 
