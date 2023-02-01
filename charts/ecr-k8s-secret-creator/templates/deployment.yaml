@@ -25,8 +25,6 @@ spec:
               value: {{ .Values.secret.type | quote }}
             - name: AWS_REGION
               value: {{ .Values.aws.region | quote }}
-            - name: INTERVAL
-              value: {{ .Values.refresh_interval | quote }}
             - name: TARGET_NAMESPACES
               value: {{ .Values.target_namespaces | join "," | quote }}
             - name: TARGET_REGISTRIES

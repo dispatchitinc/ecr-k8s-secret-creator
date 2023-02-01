@@ -47,10 +47,9 @@ func main() {
 		log.Fatalw("failed to load configuration", "error", err)
 	}
 
-	log.Info(
+	log.Infow(
 		"loaded configuration",
 		"region", cfg.AwsRegion,
-		"interval", cfg.Interval,
 		"secretName", cfg.SecretName,
 		"targetNamespaces", cfg.TargetNamespaces,
 		"secretType", cfg.SecretType,
@@ -75,7 +74,7 @@ func main() {
 	go func() { refresh <- true }()
 
 	// The timer that refreshes the secrets before it expires
-	ticker := time.NewTicker(time.Duration(cfg.Interval) * time.Second)
+	ticker := time.NewTicker(time.Second * 10)
 	defer ticker.Stop()
 
 	for {

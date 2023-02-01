@@ -20,10 +20,6 @@ aws:
   # Region the API calls to get the ECR token
   region: us-east-2
 
-# Seconds to refresh the secrets (this must be less than 12 hours as
-# required by ECR session expiration). Defaults to 20 minutes.
-refresh_interval: 1200
-
 # A list of namespaces to insert this secret
 target_namespaces: [default]
 

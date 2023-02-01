@@ -8,7 +8,6 @@ import (
 )
 
 type Config struct {
-	Interval         int      `env:"INTERVAL" envDefault:"10"`
 	AwsRegion        string   `env:"AWS_REGION" envDefault:"us-east-2"`
 	SecretName       string   `env:"SECRET_NAME" envDefault:"ecr-docker-secret"`
 	TargetNamespaces []string `env:"TARGET_NAMESPACES" envDefault:"default"`
