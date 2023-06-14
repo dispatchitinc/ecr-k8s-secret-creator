@@ -1,4 +1,4 @@
-name: "Auto/Trigger: Delete Old Packages"
+name: "Daily/Trigger: Delete Old Packages"
 
 on:
   schedule:
