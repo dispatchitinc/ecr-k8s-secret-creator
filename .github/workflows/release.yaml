@@ -1,4 +1,4 @@
-name: Publish
+name: "Auto: Publish"
 
 on:
   push:
@@ -88,4 +88,3 @@ jobs:
         uses: helm/chart-releaser-action@v1.5.0
         env:
           CR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-

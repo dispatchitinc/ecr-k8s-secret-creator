@@ -1,0 +1,17 @@
+name: "Auto/Trigger: Delete Old Packages"
+
+on:
+  schedule:
+    - cron: "0 5 * * *" # 5am UTC daily (11pm/12am CT)
+  workflow_dispatch:
+
+jobs:
+  delete-old-packages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/delete-package-versions@v4
+        with:
+          delete-only-untagged-versions: 'true'
+          min-versions-to-keep: 5
+          package-name: ${{ github.event.repository.name }}
+          package-type: container
