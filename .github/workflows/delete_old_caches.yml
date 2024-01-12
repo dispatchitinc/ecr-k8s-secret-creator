@@ -1,0 +1,12 @@
+name: "Daily/Trigger: Delete Old Caches"
+
+on:
+  schedule:
+    - cron: "0 5 * * *" # 5am UTC daily (11pm/12am CT)
+  workflow_dispatch:
+
+jobs:
+  purge-cache:
+    runs-on: [ self-hosted, "${{ vars.RUNNER_DEFAULT }}" ]
+    steps:
+      - uses: MyAlbum/purge-cache@v2
