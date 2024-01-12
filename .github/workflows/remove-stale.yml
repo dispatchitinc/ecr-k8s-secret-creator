@@ -1,0 +1,11 @@
+name: "Daily/Trigger: Remove Stale Branches & PRs"
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Everyday at midnight
+  workflow_dispatch:
+
+jobs:
+  remove-stale:
+    name: Remove Stale Branches & PRs
+    uses: dispatchitinc/github-actions/.github/workflows/remove-stale.yml@v1
