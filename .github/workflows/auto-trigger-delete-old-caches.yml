@@ -7,6 +7,6 @@ on:
 
 jobs:
   purge-cache:
-    runs-on: [ self-hosted, "${{ vars.RUNNER_DEFAULT }}" ]
+    runs-on: ubuntu-latest
     steps:
       - uses: MyAlbum/purge-cache@v2
