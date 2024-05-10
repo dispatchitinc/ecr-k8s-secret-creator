@@ -1,3 +1,9 @@
+## 0.2.21 (2024-05-10)
+
+### Fix
+
+- **deps**: update module github.com/stretchr/testify to v1.9.0 (#19)
+
 ## 0.2.20 (2024-05-10)
 
 ### Fix
