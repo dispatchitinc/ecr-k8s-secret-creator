@@ -1,7 +1,6 @@
 name: "Daily/Trigger: Remove Stale Branches & PRs"
 
 on:
-  pull_request:
   schedule:
     - cron: "0 0 * * *" # 12am UTC daily (6pm/7pm CT)
   workflow_dispatch:
