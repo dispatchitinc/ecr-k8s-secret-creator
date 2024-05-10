@@ -1,7 +1,6 @@
 name: "Daily/Trigger: Delete Old Packages"
 
 on:
-  pull_request:
   schedule:
     - cron: "0 5 * * *" # 5am UTC daily (11pm/12am CT)
   workflow_dispatch:
