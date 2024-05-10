@@ -1,3 +1,9 @@
+## 0.2.22 (2024-05-10)
+
+### Fix
+
+- **deps**: update module go.uber.org/zap to v1.27.0 (#23)
+
 ## 0.2.21 (2024-05-10)
 
 ### Fix
