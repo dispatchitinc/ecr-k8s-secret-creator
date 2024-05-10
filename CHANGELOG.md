@@ -1,3 +1,15 @@
+## 0.2.21 (2024-05-10)
+
+### Fix
+
+- **deps**: update module github.com/stretchr/testify to v1.9.0 (#19)
+
+## 0.2.20 (2024-05-10)
+
+### Fix
+
+- **deps**: update module github.com/aws/aws-sdk-go to v1.52.6 (#26)
+
 ## 0.2.19 (2023-02-01)
 
 ### Fix
