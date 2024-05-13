@@ -1,6 +1,6 @@
 module github.com/dispatchitinc/ecr-k8s-secret-creator
 
-go 1.19
+go 1.22.3
 
 require (
 	github.com/aws/aws-sdk-go v1.52.6
