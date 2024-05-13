@@ -24,11 +24,7 @@ jobs:
 
       - name: Staticcheck
         run: |
-          echo "Go Get"
           go get -u honnef.co/go/tools/cmd/staticcheck
-          echo "Install"
           go install honnef.co/go/tools/cmd/staticcheck
-          echo "Go Mod Tidy"
           go mod tidy
-          echo "Run"
           staticcheck ./...
