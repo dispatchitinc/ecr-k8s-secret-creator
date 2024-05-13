@@ -19,11 +19,11 @@ jobs:
       - name: Test
         run: go test -v ./...
 
-      - name: Build
-        run: go build -v ./...
-
       - name: Staticcheck
         run: |
           go get -u honnef.co/go/tools/cmd/staticcheck
           go install honnef.co/go/tools/cmd/staticcheck
           staticcheck ./...
+
+      - name: Build
+        run: go build -v ./...
