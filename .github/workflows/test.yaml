@@ -19,18 +19,12 @@ jobs:
       - name: Test
         run: go test -v ./...
 
+      - name: Build
+        run: go build -v ./...
+
       - name: Staticcheck
         run: |
           go get -u honnef.co/go/tools/cmd/staticcheck
           go install honnef.co/go/tools/cmd/staticcheck
           echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
           staticcheck ./...
-
-      # - uses: dominikh/staticcheck-action@v1.3.0
-      #   with:
-      #     cache-key: ${{ github.event.pull_request.number || github.head_ref }}
-      #     install-go: false
-      #     version: "2022.1.3"
-
-      - name: Build
-        run: go build -v ./...
