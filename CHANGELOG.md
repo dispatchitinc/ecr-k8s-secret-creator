@@ -1,3 +1,9 @@
+## 0.2.23 (2024-05-13)
+
+### Fix
+
+- **deps**: update module github.com/aws/aws-sdk-go to v1.53.0 (#33)
+
 ## 0.2.22 (2024-05-10)
 
 ### Fix
