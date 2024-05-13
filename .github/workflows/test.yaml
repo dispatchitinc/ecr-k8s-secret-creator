@@ -22,8 +22,8 @@ jobs:
       - name: Staticcheck
         run: |
           go mod download honnef.co/go/tools
-          go install honnef.co/go/tools/cmd/staticcheck
           go mod tidy
+          go install honnef.co/go/tools/cmd/staticcheck
           echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
           staticcheck ./...
 
