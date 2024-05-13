@@ -22,6 +22,7 @@ jobs:
       - uses: dominikh/staticcheck-action@v1.3.0
         with:
           cache-key: ${{ github.event.pull_request.number || github.head_ref }}
+          install-go: false
           version: "2022.1.3"
 
       - name: Build
