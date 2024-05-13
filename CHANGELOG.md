@@ -1,3 +1,9 @@
+## 0.2.24 (2024-05-13)
+
+### Fix
+
+- **deps**: update kubernetes packages to v0.30.0 (#20)
+
 ## 0.2.23 (2024-05-13)
 
 ### Fix
