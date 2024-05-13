@@ -3,7 +3,7 @@ module github.com/dispatchitinc/ecr-k8s-secret-creator
 go 1.22
 
 require (
-	github.com/aws/aws-sdk-go v1.52.6
+	github.com/aws/aws-sdk-go v1.53.0
 	github.com/caarlos0/env v3.5.0+incompatible
 	github.com/stretchr/testify v1.9.0
 	go.uber.org/zap v1.27.0
