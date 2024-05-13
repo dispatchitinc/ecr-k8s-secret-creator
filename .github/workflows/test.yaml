@@ -19,11 +19,11 @@ jobs:
       - name: Test
         run: go test -v ./...
 
-      - name: Install Staticcheck
-        run: go get honnef.co/go/tools/cmd/staticcheck
-
-      - name: Run Staticcheck
-        run: staticcheck ./...
+      - name: Staticcheck
+        run: |
+          go get honnef.co/go/tools/cmd/staticcheck
+          echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
+          staticcheck ./...
 
       # - uses: dominikh/staticcheck-action@v1.3.0
       #   with:
