@@ -27,6 +27,8 @@ jobs:
           go install honnef.co/go/tools/cmd/staticcheck
           echo "Add to PATH"
           echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
+          echo "Go Mod Tidy"
+          go mod tidy
           echo "Run"
           staticcheck ./...
 
