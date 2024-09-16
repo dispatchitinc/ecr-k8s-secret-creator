@@ -1,3 +1,10 @@
+## 0.2.25 (2024-09-16)
+
+### Fix
+
+- **deps**: update module github.com/aws/aws-sdk-go to v1.55.5 (#35)[skip ci]
+- **deps**: update kubernetes packages to v0.31.1 (#36) [skip ci]
+
 ## 0.2.24 (2024-05-13)
 
 ### Fix
