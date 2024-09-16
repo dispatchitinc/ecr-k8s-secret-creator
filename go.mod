@@ -5,7 +5,7 @@ go 1.22.0
 toolchain go1.22.3
 
 require (
-	github.com/aws/aws-sdk-go v1.53.0
+	github.com/aws/aws-sdk-go v1.55.5
 	github.com/caarlos0/env v3.5.0+incompatible
 	github.com/stretchr/testify v1.9.0
 	go.uber.org/zap v1.27.0
