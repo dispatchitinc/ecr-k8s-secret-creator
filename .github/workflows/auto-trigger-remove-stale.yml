@@ -22,7 +22,7 @@ jobs:
           stale-pr-label: 'stale'
           stale-pr-message: 'This PR is marked as stale because it has been open for 60 days with no activity.'
 
-      - uses: fpicalausa/remove-stale-branches@v2.1.2
+      - uses: fpicalausa/remove-stale-branches@v2.2.0
         with:
           days-before-branch-delete: 7
           days-before-branch-stale: 90
