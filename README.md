@@ -2,6 +2,8 @@
 
 # ECR K8S Secret Creator
 
+> This project is archived as it won't receive any more bug fixes, feature development, or security updates.
+
 This application refreshes the ECR tokens that expire every 12 hours.  EKS has this capability built into the IAM roles, but when running outside of EKS you'll need to manage this functionality yourself with an instance profile.  There are many solutions for this like including a cron job and a third-party `aws-kubectl` image, but this solution worked best for us because:
 
 - Uses a distroless container
